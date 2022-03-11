@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { DateTime } from "luxon";
 
-function Flight({ id, flyFrom, flyTo, dTime, aTime, partner }) {
+function Flights({ id, flyFrom, flyTo, dTime, aTime, partner }) {
   return (
       <div key={id}>
       <h2>{flyFrom}</h2>
@@ -9,4 +9,4 @@ function Flight({ id, flyFrom, flyTo, dTime, aTime, partner }) {
   );
     
 }
-export default Flight;
+export default Flights;

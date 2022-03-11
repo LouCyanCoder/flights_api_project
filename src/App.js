@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import Flight from './Components/Flights';
+import Flights from './Components/Flights';
 import React, { useState, useEffect } from 'react';
 import SearchBar from './Components/SearchBar';
 
