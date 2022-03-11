@@ -13,24 +13,28 @@ function App() {
   const [searchArrival, setSearchArrival] = useState("");
   const [departureLocations,setDepartureLocations] = useState([]);
   const [arrivalLocations ,setArrivalLocations] = useState([]);
-  
-  // const url =
-  //   "https://api.skypicker.com/flights?flyFrom=PRG&to=VLC&partner=data4youcbp202106";
+  // const [departureTime, setDepartureTime] = useState(0);
+  // const [arrivalTime, setArrivalTime] = useState(0);
 
-  // useEffect(() => {
-  //   fetchFlightData();
-  // }, []);
+  const partner = "data4youcbp202106";
+  const url = (departure, destination, partner) => {
+    return `https://api.skypicker.com/flights?fly_from=${departure}&fly_to=${destination}&partner=${partner}`;
+  };
 
-  // const fetchFlightData = async () => {
-  //   const resp = await fetch(url);
-  //   const result = await resp.json();
-  //   console.log(result);
-  //   setFlights(result.data);
-  // };
+  const fetchFlightData = async (departure = "PRG", destination = "VLC") => {
+    const resp = await fetch(url(departure, destination, partner));
+    const result = await resp.json();
+    console.log(result.data);
+    result && setFlights(result.data);
+  };
+
+  useEffect(() => {
+    fetchFlightData();
+  }, []);
 
   return (
     <div className="App">
-    <SearchBar
+        <SearchBar
       setDepartureLocations={setDepartureLocations}
       setArrivalLocations={setArrivalLocations}
       setSearchDeparture={setSearchDeparture}
@@ -40,11 +44,14 @@ function App() {
       // fetchFlightData={fetchFlightData} 
       />
 
-    {flights.map((item, i) => (
-        <div key={i}>
-          <h2>{item.flyFrom}</h2>
-        </div>
-      ))}
+
+      {flights.length
+        ? flights.map((flight, i) => (
+            <div key={flight.id}>
+              <Flights flight={flight} />
+            </div>
+          ))
+        : "No records here"}
     </div>
   );
 }
