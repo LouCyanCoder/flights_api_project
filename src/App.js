@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import Flights from "./components/Flights";
+import Flights from "./Components/Flights";
 
 function App() {
   const [flights, setFlights] = useState([]);
@@ -25,13 +25,17 @@ function App() {
 
   return (
     <div className="App">
-      {flights.length
-        ? flights.map((flight, i) => (
-            <div key={flight.id}>
-              <Flights flight={flight} />
-            </div>
-          ))
-        : "No records here"}
+      {flights.length ? (
+        flights.map((flight, i) => (
+          <div key={flight.id}>
+            <Flights flight={flight} />
+          </div>
+        ))
+      ) : (
+        <marquee direction="down" vspace="100px">
+          Loading...
+        </marquee>
+      )}
     </div>
   );
 }
