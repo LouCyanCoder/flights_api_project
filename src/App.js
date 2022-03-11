@@ -35,6 +35,8 @@ function App() {
       setArrivalLocations={setArrivalLocations}
       setSearchDeparture={setSearchDeparture}
       setSearchArrival={setSearchArrival}
+      departureLocations={departureLocations}
+      arrivalLocations={arrivalLocations}
       // fetchFlightData={fetchFlightData} 
       />
 
