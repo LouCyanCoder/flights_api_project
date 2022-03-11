@@ -7,9 +7,13 @@ function App() {
   // const [departureTime, setDepartureTime] = useState(0);
   // const [arrivalTime, setArrivalTime] = useState(0);
 
+  const [searchValue, setSearchValue] = useState({
+    from: '',
+    to:''
+  })
 
   const url =
-    "https://api.skypicker.com/flights?flyFrom=PRG&to=VLC&partner=data4youcbp202106";
+    `https://api.skypicker.com/flights?flyFrom=${searchValue.from}&to=${searchValue.to}&partner=data4youcbp202106`;
 
   useEffect(() => {
     fetchFlightData();
